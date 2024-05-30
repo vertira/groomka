@@ -28,7 +28,7 @@ const Hero = () => {
 				<h1 className="flex justify-center font-bold text-rose-500 uppercase tracking-[6px]">
 					Zadbaj o Swojego Pupila
 				</h1>
-				<h2 className="w-full text-center text-6xl text-gray-900 capitalize animate-fade">
+				<h2 className="w-full text-center text-6xl text-gray-900 capitalize">
 					Profesjonalna Pielęgnacja Psów
 				</h2>
 				<Lottie src="/lottie/Dog.lottie" styles="w-full size-96 mb-10" />

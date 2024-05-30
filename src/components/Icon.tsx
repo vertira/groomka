@@ -1,4 +1,4 @@
-import * as React from "react";
+
 interface Person {
 	title: string;
 	href: string;
