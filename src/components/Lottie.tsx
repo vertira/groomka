@@ -7,13 +7,7 @@ interface LottieProps {
 const Lottie = ({ src, styles }: LottieProps) => {
 	return (
 		<>
-			<DotLottieReact
-				loading="lazy"
-				src={src}
-				loop
-				autoplay
-				className={styles}
-			/>
+			<DotLottieReact src={src} loop autoplay className={styles} />
 		</>
 	);
 };
