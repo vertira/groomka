@@ -31,7 +31,7 @@ const Hero = () => {
 				<h2 className="w-full text-center text-6xl text-gray-900 capitalize animate-fade">
 					Profesjonalna Pielęgnacja Psów
 				</h2>
-				<Lottie src="/lottie/Dog.lottie" styles="w-full size-96 mb-10" />
+				{/* <Lottie src="/lottie/Dog.lottie" styles="w-full size-96 mb-10" /> */}
 			</div>
 		</div>
 	);
