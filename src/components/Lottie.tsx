@@ -1,3 +1,4 @@
+import React from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 interface LottieProps {
 	src: string;

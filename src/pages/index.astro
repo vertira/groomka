@@ -4,8 +4,8 @@ import Header from '../components/Header.tsx'
 import Hero from '../components/Hero'
 import Content1 from '../components/Content1.tsx'
 import Content2 from '../components/Content2.tsx'
-import Contact from '../components/Contact.astro'
-import Footer from '../components/Footer.astro'
+import Contact from '../components/Contact'
+import Footer from '../components/Footer'
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
 ---
@@ -27,7 +27,7 @@ import Footer from '../components/Footer.astro'
 			<Hero client:only/>
 			<Content1 client:only />
 				<Content2  client:only/>
-				<Contact />
-				<Footer/>
+				<Contact client:only/>
+				<Footer client:only/>
 	</body>
 </html>
