@@ -20,9 +20,9 @@ import Footer from '../components/Footer.astro';
   </head>
   <body class="h-full w-full bg-gradient-to-b from-pink-50 from-0% via-pink-100 via-49% to-pink-200 to-100%">
     <Header />
-    <Hero client:only />
-    <Content1 client:only/>
-    <Content2 client:only/>
+    <Hero client:only="React" />
+    <Content1 client:only="React" />
+    <Content2 client:only="React" />
     <Contact />
     <Footer />
   </body>
