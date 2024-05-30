@@ -32,6 +32,8 @@ const Content1 = () => {
 				<motion.img
 					key={src}
 					src={src}
+					decoding="async"
+					loading="lazy"
 					alt="grooming dog"
 					className="size-96 rounded-md"
 					initial={{ opacity: 0, y: 20 }}
