@@ -4,17 +4,19 @@ import Lottie from "./Lottie.tsx";
 ---
 <script>
       document.addEventListener('DOMContentLoaded', () => {
-        const img = document.querySelector('.toggle-image');
-        const title = document.querySelector('.toggle-title');
-        
-        img.addEventListener('click', () => {
-          const src = img.getAttribute('src') === '/images/tina1.webp' ? '/images/tina2.webp' : '/images/tina1.webp';
-          const titleText = title.innerText === 'Przed' ? 'Po' : 'Przed';
-          
-          img.setAttribute('src', src);
-          title.innerText = titleText;
-        });
-      });
+  const img = document.querySelector('.toggle-image') as HTMLImageElement | null;
+  const title = document.querySelector('.toggle-title') as HTMLElement | null;
+  
+  if (img && title) {
+    img.addEventListener('click', () => {
+      const src = img.getAttribute('src') === '/images/tina1.webp' ? '/images/tina2.webp' : '/images/tina1.webp';
+      const titleText = title.innerText === 'Przed' ? 'Po' : 'Przed';
+      
+      img.setAttribute('src', src);
+      title.innerText = titleText;
+    });
+  }
+});
     </script>
 
     <section class="flex flex-col max-w-full mx-10 mt-64 lg:mx-30 lg:flex-row-reverse lg:items-center lg:justify-center lg:h-screen" id="animals">
