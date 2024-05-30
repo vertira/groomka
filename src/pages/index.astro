@@ -1,11 +1,11 @@
 ---
 // Component Imports
-import Header from '../components/Header.tsx'
-import Hero from '../components/Hero'
-import Content1 from '../components/Content1.tsx'
-import Content2 from '../components/Content2.tsx'
-import Contact from '../components/Contact'
-import Footer from '../components/Footer'
+import Header from '../components/Header.astro'
+import Hero from '../components/Hero.astro'
+import Content1 from '../components/Content1.astro'
+import Content2 from '../components/Content2.astro'
+import Contact from '../components/Contact.astro'
+import Footer from '../components/Footer.astro'
 import Lottie from '../components/Lottie'
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
@@ -24,12 +24,11 @@ import Lottie from '../components/Lottie'
 		<title>Groomka Kalisz</title>
 	</head>
 	<body class="h-full w-full bg-gradient-to-b from-pink-50 from-0% via-pink-100 via-49% to-pink-200 to-100%">
-		<Header client:only="react"/>
-			<Hero client:only="react"/>
-			<Lottie src="/lottie/Dog.lottie" styles="w-full size-96 mb-10" client:only="react"/>
-			<Content1 client:only="react" />
-				<Content2  client:only="react"/>
-				<Contact client:only="react"/>
-				<Footer client:only="react"/>
+		<Header />
+			<Hero />
+			<Content1 />
+				<Content2  />
+				<Contact />
+				<Footer />
 	</body>
 </html>
