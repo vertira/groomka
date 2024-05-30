@@ -3,11 +3,13 @@ import Lottie from "./Lottie";
 import { motion } from "framer-motion";
 
 const Content1 = () => {
-	const [src, setSource] = useState("/images/tina1.jpg");
+	const [src, setSource] = useState("/images/tina1.webp");
 	const [title, setTitle] = useState("Przed");
 	const handleClick = () => {
 		setSource((prev) =>
-			prev === "/images/tina1.jpg" ? "/images/tina2.jpg" : "/images/tina1.jpg"
+			prev === "/images/tina1.webp"
+				? "/images/tina2.webp"
+				: "/images/tina1.webp"
 		);
 		setTitle((prev) => (prev === "Przed" ? "Po" : "Przed"));
 	};
@@ -32,9 +34,9 @@ const Content1 = () => {
 					src={src}
 					alt="grooming dog"
 					className="size-96 rounded-md"
-					initial={{ opacity: 0, y: 20}}
+					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
-					exit={{ opacity: 0, }}
+					exit={{ opacity: 0 }}
 					transition={{ duration: 0.6 }}
 				/>
 			</div>

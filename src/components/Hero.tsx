@@ -1,5 +1,4 @@
 import Lottie from "./Lottie";
-import { motion } from "framer-motion";
 
 const Hero = () => {
 	return (
@@ -25,22 +24,15 @@ const Hero = () => {
 					/>
 				</a>
 			</div>
-			<motion.div
-				initial={{ opacity: 0, y: -50 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				transition={{
-					ease: "easeIn",
-					duration: 0.6,
-				}}
-			>
-				<h1 className="justify-center font-bold text-rose-500 uppercase tracking-[6px]">
+			<div>
+				<h1 className="flex justify-center font-bold text-rose-500 uppercase tracking-[6px]">
 					Zadbaj o Swojego Pupila
 				</h1>
 				<h2 className="w-full text-center text-6xl text-gray-900 capitalize animate-fade">
 					Profesjonalna Pielęgnacja Psów
 				</h2>
 				<Lottie src="/lottie/Dog.lottie" styles="w-full size-96 mb-10" />
-			</motion.div>
+			</div>
 		</div>
 	);
 };

@@ -10,7 +10,7 @@ const Content1 = () => {
 			<div className="flex relative flex-col mb-20 lg:mb-0">
 				<Lottie src="/lottie/love.lottie" styles="w-full size-48 mb-10" />
 				<img
-					src="/images/dog.png"
+					src="/images/dog.webp"
 					alt="grooming dog"
 					className="absolute top-3/4 -translate-y-10 size-56 xl:static xl:size-96 "
 				/>
