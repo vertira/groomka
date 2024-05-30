@@ -5,11 +5,7 @@ import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [
-		tailwind(),
-		react(),
-		(await import("@playform/compress")).default(),
-	],
+	integrations: [tailwind(), react()],
 	output: "hybrid",
 	adapter: vercel(),
 });
