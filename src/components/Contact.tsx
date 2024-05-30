@@ -45,6 +45,7 @@ const Contact = () => {
 				</div>
 			</section>
 			<img
+				loading="lazy"
 				src="/images/maps.webp"
 				alt=""
 				className="hidden lg:flex w-6/12 rounded-md"
