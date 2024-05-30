@@ -6,12 +6,10 @@ interface Person {
 const Icon = ({ title, href }: Person) => (
 	<div className="relative group">
 		<svg
-			width="145"
-			height="90"
 			viewBox="0 0 160 89"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
-			className="group-hover:animate-fill"
+			className="group-hover:animate-fill size-28 sm:size-32 lg:size-40"
 		>
 			<g filter="url(#filter0_d_771_519)">
 				<path
@@ -67,7 +65,7 @@ const Icon = ({ title, href }: Person) => (
 			</defs>
 		</svg>
 		<a
-			className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 font-headings text-3xl select-none"
+			className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 font-headings text-xl sm:text-3xl select-none"
 			href={href}
 		>
 			{title}
