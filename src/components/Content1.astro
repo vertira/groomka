@@ -1,6 +1,7 @@
 ---
 import Lottie from "./Lottie";
 import { Image } from 'astro:assets';
+import Motion from './Motion.tsx'
 ---
 
 		<section
@@ -17,8 +18,10 @@ import { Image } from 'astro:assets';
 					class="absolute top-3/4 -translate-y-10 size-56 xl:static xl:size-96 "
 				/>
 			</div>
-			<div
-				class="flex flex-col mt-20 lg:mt-0 lg:w-5/12 animate-fade"
+			<Motion
+				className="flex flex-col mt-20 lg:mt-0 lg:w-5/12"
+				client:only="react"
+				ystart={-100}
 			>
 				<div class="flex gap-5 py-1.5 text-rose-500 uppercase tracking-[6px]">
 					<div class="shrink-0 my-auto h-0.5 bg-rose-500 w-[72px]" />
@@ -37,5 +40,5 @@ import { Image } from 'astro:assets';
 					zawsze stosuję metody bezstresowe i odpowiednie dla każdego
 					indywidualnego pupila.
 				</p>
-			</div>
+			</Motion>
 		</section>

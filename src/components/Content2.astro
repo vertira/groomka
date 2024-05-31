@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Lottie from "./Lottie.tsx";
+import Motion from './Motion.tsx'
 ---
 <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -33,7 +34,7 @@ import Lottie from "./Lottie.tsx";
           class="toggle-image size-96 rounded-md cursor-pointer"
         />
       </div>
-      <div class="flex flex-col lg:mt-0 lg:w-5/12 lg:mx-10 fade-in-up">
+      <Motion className="flex flex-col lg:mt-0 lg:w-5/12 lg:mx-10 fade-in-up" client:only="react" scale={0}>
         <div class="flex gap-5 py-1.5 text-rose-500 uppercase tracking-[6px]">
           <div class="shrink-0 my-auto h-0.5 bg-rose-500 w-[72px]" />
           <h2 class="font-accent text-sm lg:text-xl">
@@ -51,5 +52,5 @@ import Lottie from "./Lottie.tsx";
           Twojego psa. Zaufaj naszym ekspertom i zobacz, jak zadowolony i pełen
           energii może być Twój piesek po wizycie u nas!
         </p>
-      </div>
+      </Motion>
     </section>
