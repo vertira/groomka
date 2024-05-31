@@ -1,7 +1,6 @@
 // AnimatedDiv.tsx
 import React from "react";
 import { motion } from "framer-motion";
-import { useReducedMotion } from "framer-motion";
 
 interface AnimatedDivProps {
 	children: React.ReactNode;
@@ -18,7 +17,6 @@ const Motion = ({
 	scale,
 	duration,
 }: AnimatedDivProps) => {
-	const prefersReducedMotion = useReducedMotion();
 	return (
 		<motion.div
 			className={className}
