@@ -4,10 +4,10 @@ import { Image } from 'astro:assets';
 ---
 
 		<nav class="flex flex-col xl:flex-row xl:justify-between max-w-full items-center">
-			<Image src="/images/Logo.webp" alt="logo" class="h-24 xl:ml-10 xl:mt-10 " loading="lazy" width={200} height={96} />
+			<Image src="/images/Logo.webp" alt="logo" class="h-24 xl:ml-10 xl:mt-10 "  width={200} height={96} />
 			<div class="flex flex-row max-w-full justify-center xl:justify-end xl:mr-10 xl:mt-10">
-				<Icon title="O Nas" href="#about" client:only="react"/>
-				<Icon title="Zwierzaki" href="#animals"client:only="react"/>
-				<Icon title="Kontakt" href="#contact"client:only="react"/>
+				<Icon title="O Nas" href="#about" client:load/>
+				<Icon title="Zwierzaki" href="#animals"client:load/>
+				<Icon title="Kontakt" href="#contact"client:load/>
 			</div>
 		</nav>

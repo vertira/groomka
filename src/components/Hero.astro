@@ -1,4 +1,5 @@
 ---
+import LazyLottie from "./LazyLottie";
 import Lottie from "./Lottie"
 import { Image } from 'astro:assets';
 ---
@@ -35,6 +36,8 @@ import { Image } from 'astro:assets';
 					Profesjonalna Pielęgnacja Psów
 				</h2>
 			</div>
-			<Lottie src="/lottie/Dog.lottie" styles="w-full w-96 h-96 mb-10" client:only="react"/>
+			<div class="w-96 h-96">
+			<LazyLottie src="/lottie/Dog.lottie" styles="w-full h-full" client:load/>
+			</div
 		</section>
 
