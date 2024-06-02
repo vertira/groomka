@@ -12,7 +12,7 @@ const Lottie = ({ src, styles }: LottieProps) => {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setIsLoaded(true);
-		}, 500); // Opóźnienie 3 sekundy
+		}, 1); // Opóźnienie 3 sekundy
 
 		return () => clearTimeout(timer); // Czysta funkcja, która usuwa timer w przypadku odmontowania komponentu
 	}, []);

@@ -2,6 +2,7 @@
 import Lottie from "./Lottie";
 import { Image } from 'astro:assets';
 import Motion from './Motion.tsx'
+import LazyLottie from "./LazyLottie";
 ---
 
 		<section
@@ -9,7 +10,7 @@ import Motion from './Motion.tsx'
 			id="about"
 		>
 			<div class="flex relative flex-col mb-20 h-96 max-w-screen sm:max-w-72 lg:mb-0">
-				<Lottie src="/lottie/love.lottie" styles="max-w-screen sm:max-w-96 h-full" client:idle/>
+				<LazyLottie src="/lottie/love.lottie" styles="max-w-screen sm:max-w-96 h-full" client:idle/>
 				<Image
 					src="/images/dog.webp"
 					alt="grooming dog"
