@@ -40,7 +40,7 @@ import Motion from './Motion.tsx'
           class="toggle-image size-96 rounded-md"
         />
       </div>
-      <Motion className="flex flex-col lg:mt-0 lg:w-5/12 lg:mx-10 transition-all" client:only="react" scale={0} duration={0}>
+      <Motion className="flex flex-col lg:mt-0 lg:w-5/12 lg:mx-10 transition duration-[1500ms] ease-in-out" client:visible scale={0} duration={0}>
         <div class="flex gap-5 py-1.5 text-pink-600 uppercase tracking-[6px]">
           <div class="shrink-0 my-auto h-0.5 bg-pink-600  w-[72px]" />
           <h2 class="font-accent text-sm lg:text-xl font-bold">
