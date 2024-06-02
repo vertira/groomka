@@ -1,6 +1,6 @@
 # Groomka
 
-My Awesome Project is a web application built using Astro, React, TypeScript, and TailwindCSS. This project is designed to provide a modern, fast, and responsive user experience. Whether you are looking to build a personal website, blog, or a more complex web application, this project serves as a great starting point.
+Groomka is a landing page built using Astro, React, TypeScript, and TailwindCSS. This project is designed to provide a modern, fast, and responsive user experience. .
 
 [LivePreview](www.groomka.vercel.app)
 
