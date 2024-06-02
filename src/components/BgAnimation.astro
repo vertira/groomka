@@ -44,8 +44,8 @@ const mouse_bone: Bone = {
 };
 
 function getRandomSpeed(pos: string): [number, number] {
-  const min = -0.5;
-  const max = 0.5;
+  const min = -0.7;
+  const max = 0.7;
   switch (pos) {
     case 'top':
       return [randomNumFrom(min, max), randomNumFrom(0.1, max)];
