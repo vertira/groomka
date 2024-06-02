@@ -14,7 +14,7 @@ TypeScript
 
 TailwindCSS
 
-## ScreenShots
+## Screenshots
 
 ![Screenshot1](public/images/screenshot1.png?raw=true "screenshot1")
 ![Screenshot2](public/images/screenshot2.png?raw=true "screenshot2")
