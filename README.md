@@ -1,13 +1,47 @@
-# Astro with Tailwind
+# Groomka
+My Awesome Project is a web application built using Astro, React, TypeScript, and TailwindCSS. This project is designed to provide a modern, fast, and responsive user experience. Whether you are looking to build a personal website, blog, or a more complex web application, this project serves as a great starting point.
 
-```sh
-npm create astro@latest -- --template with-tailwindcss
+[LivePreview](www.groomka.vercel.app)
+![PageSpeed](/images/pagespeed.png?raw=true "PageSpeed")
+## Technology
+
+Astro
+
+React 
+
+TypeScript
+
+TailwindCSS
+## Installation
+Installation
+To get started with this project, follow these steps:
+
+Clone the repository
+
+``` bash
+git clone https://github.com/{your-username}/{your-repo}.git
+cd {your-repo}
+```
+Install dependencies
+```
+npm install
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/with-tailwindcss/devcontainer.json)
+## Usage
+To run the project locally, use the following command:
 
-Astro comes with [Tailwind](https://tailwindcss.com) support out of the box. This example showcases how to style your Astro project with Tailwind.
+```
+npm run dev
+```
+This will start the development server and you can view the application at http://localhost:3000.
 
-For complete setup instructions, please see our [Tailwind Integration Guide](https://docs.astro.build/en/guides/integrations-guide/tailwind).
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
