@@ -2,7 +2,7 @@
 My Awesome Project is a web application built using Astro, React, TypeScript, and TailwindCSS. This project is designed to provide a modern, fast, and responsive user experience. Whether you are looking to build a personal website, blog, or a more complex web application, this project serves as a great starting point.
 
 [LivePreview](www.groomka.vercel.app)
-![PageSpeed](public/images/pagespeed.png?raw=true "PageSpeed")
+[![pagespeed.png](https://i.postimg.cc/Y219kwyK/pagespeed.png)](https://postimg.cc/23SmFgD2)
 ## Technology
 
 Astro
