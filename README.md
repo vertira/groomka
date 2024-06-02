@@ -1,38 +1,51 @@
 # Groomka
+
 My Awesome Project is a web application built using Astro, React, TypeScript, and TailwindCSS. This project is designed to provide a modern, fast, and responsive user experience. Whether you are looking to build a personal website, blog, or a more complex web application, this project serves as a great starting point.
 
 [LivePreview](www.groomka.vercel.app)
-[![pagespeed.png](https://i.postimg.cc/R0c8hXrF/pagespeed.png)](https://postimg.cc/gw24By2F)
+
 ## Technology
 
 Astro
 
-React 
+React
 
 TypeScript
 
 TailwindCSS
+
+## ScreenShots
+
+![Screenshot1](public/images/screenshot1.png?raw=true "screenshot1")
+![Screenshot2](public/images/screenshot2.png?raw=true "screenshot2")
+![PageSpeed](public/images/pagespeed.png?raw=true "PageSpeed")
+
 ## Installation
+
 Installation
 To get started with this project, follow these steps:
 
 Clone the repository
 
-``` bash
+```bash
 git clone https://github.com/{your-username}/{your-repo}.git
 cd {your-repo}
 ```
+
 Install dependencies
+
 ```
 npm install
 ```
 
 ## Usage
+
 To run the project locally, use the following command:
 
 ```
 npm run dev
 ```
+
 This will start the development server and you can view the application at http://localhost:3000.
 
 ## Contributing
