@@ -2,8 +2,9 @@ import * as React from "react";
 interface Person {
 	title: string;
 	href: string;
+	aria: string;
 }
-const Icon = ({ title, href }: Person) => (
+const Icon = ({ title, href, aria }: Person) => (
 	<div className="relative group">
 		<svg
 			viewBox="0 0 160 89"
@@ -67,6 +68,7 @@ const Icon = ({ title, href }: Person) => (
 		<a
 			className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 font-headings text-xl sm:text-3xl select-none"
 			href={href}
+			aria-label={aria}
 		>
 			{title}
 		</a>
