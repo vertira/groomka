@@ -1,0 +1,41 @@
+---
+import { Query } from "appwrite";
+
+import { databases } from "../../lib/appwrite";
+import Layout from "../../layout/Layout.astro";
+import { PawPrint } from "lucide-react";
+
+const { postSlug } = Astro.params;
+
+const { documents } = await databases.listDocuments(
+  import.meta.env.PUBLIC_APPWRITE_DATABASE_ID,
+  import.meta.env.PUBLIC_APPWRITE_COLLECTION_ID,
+  [Query.equal("slug", String(postSlug))],
+);
+
+if (!documents.length) {
+  return Astro.redirect("/404");
+}
+
+const post = documents[0];
+const publishedDate = new Date(post.$createdAt);
+console.log("documents", documents);
+---
+
+<Layout>
+  <div class="flex-1">
+    <article class="prose flex-1 pl-10 pt-10">
+      <h1 class="text-4xl font-extrabold flex gap-4 items-center">
+        <PawPrint size={36} />{post.title}
+        <p
+          class="text-slate-600 bg-slate-500/20 rounded-3xl text-xs border border-slate-500/50 px-4 py-2"
+        >
+          <time datetime={publishedDate.toISOString()}
+            >Opublikowano {publishedDate.toLocaleDateString()}</time
+          >
+        </p>
+      </h1>
+      <Fragment set:html={post.content} />
+    </article>
+  </div>
+</Layout>
