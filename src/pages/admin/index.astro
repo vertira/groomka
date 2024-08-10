@@ -1,0 +1,35 @@
+---
+// Blok frontmatter (SSR) w Astro
+import { account } from "../../lib/appwrite";
+
+const getUser = async () => {
+  try {
+    const user = await account.get();
+    return user;
+  } catch (error) {
+    console.log("Error");
+  }
+};
+
+const isAdmin = await getUser();
+---
+
+<h1>{isAdmin ? `User: ${isAdmin.name}` : "User not logged in"}</h1>
+<button id="submit-btn" class="t border-2  h-12  w-96">SEND</button>
+
+<script>
+  import { account } from "../../lib/appwrite";
+
+  document.getElementById('submit-btn')!.addEventListener('click', async () => {
+    try {
+      const result = await account.createEmailPasswordSession('gromka2@groomka.pl', 'Groomka1234');
+      console.log(result);
+
+      // Po udanej sesji, możesz odświeżyć stronę lub zaktualizować stan użytkownika na stronie
+      const user = await account.get();
+      document.querySelector('h1')!.innerText = user ? `User: ${user.name}` : "User not logged in";
+    } catch (error) {
+      console.log("Error", error);
+    }
+  });
+</script>

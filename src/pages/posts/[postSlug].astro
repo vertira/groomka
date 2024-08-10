@@ -1,9 +1,9 @@
 ---
 import { Query } from "appwrite";
-
 import { databases } from "../../lib/appwrite";
 import Layout from "../../layout/Layout.astro";
-import { PawPrint } from "lucide-react";
+import { PawPrint, CalendarHeart } from "lucide-react";
+import Header from "../../components/Header.astro";
 
 const { postSlug } = Astro.params;
 
@@ -14,28 +14,51 @@ const { documents } = await databases.listDocuments(
 );
 
 if (!documents.length) {
-  return Astro.redirect("/404");
+  return Astro.redirect("/");
 }
 
 const post = documents[0];
 const publishedDate = new Date(post.$createdAt);
-console.log("documents", documents);
 ---
 
 <Layout>
+  <Header />
   <div class="flex-1">
-    <article class="prose flex-1 pl-10 pt-10">
-      <h1 class="text-4xl font-extrabold flex gap-4 items-center">
-        <PawPrint size={36} />{post.title}
-        <p
-          class="text-slate-600 bg-slate-500/20 rounded-3xl text-xs border border-slate-500/50 px-4 py-2"
-        >
-          <time datetime={publishedDate.toISOString()}
-            >Opublikowano {publishedDate.toLocaleDateString()}</time
-          >
+    <article class="px-20 py-10">
+      <div class="bg-white px-10 py-10 border border-pink-500/30 rounded-xl">
+        <h1 class="font-bold font-headings text-neutral-900 flex gap-4 items-center text-4xl mb-4">
+          <PawPrint size={40} />
+          {post.title}
+        </h1>
+        <p class="text-neutral-700 text-base font-accent flex gap-4 items-center mb-6">
+          <CalendarHeart size={40} /> 
+          <time datetime={publishedDate.toISOString()}>
+            {publishedDate.toLocaleDateString()}
+          </time>
         </p>
-      </h1>
-      <Fragment set:html={post.content} />
+        <div class="flex flex-col md:flex-row items-start gap-8 mb-8">
+          {post.image && (
+            <img
+              src={post.image}
+              height="500"
+              width="500"
+              class="h-auto w-1/4 object-cover rounded-xl group-hover/card:shadow-xl"
+              alt="thumbnail"
+            />
+          )}
+        </div>
+        <div class="prose max-w-none font-accent">
+          <Fragment set:html={post.content} />
+        </div>
+        <div class="flex justify-end items-center mt-8">
+          <a 
+            href="/posts"
+            class="px-4 py-2 rounded-xl border border-pink-600/30 hover:bg-pink-500/30 font-bold text-neutral-900"
+          >
+            Powrót do listy postów
+          </a>
+        </div>
+      </div>
     </article>
   </div>
 </Layout>

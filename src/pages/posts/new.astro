@@ -72,6 +72,7 @@ if (Astro.request.method === "POST") {
           type="text"
           name="title"
         />
+        <p class="text-sm text-slate-500 mt-1"><span id="titleCount">0</span>/255</p>
       </div>
       <div class="mb-6">
         <label class="block text-base font-semibold mb-3" for="slug">Slug</label
@@ -82,6 +83,7 @@ if (Astro.request.method === "POST") {
           type="text"
           name="slug"
         />
+        <p class="text-sm text-slate-500 mt-1"><span id="slugCount">0</span>/100</p>
       </div>
       <div class="mb-6">
         <label class="block text-base font-semibold mb-3" for="uploader"
@@ -98,14 +100,24 @@ if (Astro.request.method === "POST") {
         />
       </div>
       <div class="mb-6">
-        <label class="block text-base font-semibold mb-1" for="content"
-          >Treść</label
-        >
+        <label class="block text-base font-semibold mb-1" for="content">Treść</label>
         <p class="text-xs text-slate-600 italic mb-3">Supports Markdown</p>
+        <div class="mb-2 flex flex-wrap gap-2">
+          <button type="button" class="markdown-btn" data-markdown="bold">B</button>
+          <button type="button" class="markdown-btn" data-markdown="italic">I</button>
+          <button type="button" class="markdown-btn" data-markdown="h2">H2</button>
+          <button type="button" class="markdown-btn" data-markdown="h3">H3</button>
+          <button type="button" class="markdown-btn" data-markdown="ul">UL</button>
+          <button type="button" class="markdown-btn" data-markdown="ol">OL</button>
+          <button type="button" class="markdown-btn" data-markdown="link">Link</button>
+        </div>
         <textarea
           id="content"
-          class="block w-full min-h-80 text-slate-900 border-slate-400 rounded focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          name="content"></textarea>
+          class="block p-2 w-full min-h-80 text-slate-900 border-slate-400 rounded focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          name="content"
+          maxlength="10000"
+        ></textarea>
+        <p class="text-sm text-slate-500 mt-1"><span id="contentCount">0</span>/1000000</p>
       </div>
       <div class="mb-6">
         <label class="block text-base font-semibold mb-3" for="excerpt"
@@ -117,6 +129,7 @@ if (Astro.request.method === "POST") {
           type="text"
           name="excerpt"
         />
+        <p class="text-sm text-slate-500 mt-1"><span id="excerptCount">0</span>/1000</p>
       </div>
       <button
         class="inline-block rounded py-2.5 px-6 mb-10 text-base font-bold uppercase border border-pink-500/30 bg-slate-500/40 hover:bg-slate-600/40"
@@ -124,4 +137,106 @@ if (Astro.request.method === "POST") {
       >
     </form>
   </div>
+  <style>
+    .markdown-btn {
+      padding: 0.25rem 0.5rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.25rem;
+      background-color: #f7fafc;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #4a5568;
+      transition: all 0.2s;
+    }
+  
+    .markdown-btn:hover {
+      background-color: #edf2f7;
+    }
+  </style>
+  <script>
+    interface CharCountConfig {
+      inputId: string;
+      counterId: string;
+      maxLength: number;
+    }
+  
+    const updateCharCount = ({ inputId, counterId, maxLength }: CharCountConfig): void => {
+      const input = document.getElementById(inputId) as HTMLInputElement | HTMLTextAreaElement;
+      const counter = document.getElementById(counterId);
+      
+      if (input && counter) {
+        const updateCount = () => {
+          const currentLength = input.value.length;
+          counter.textContent = currentLength.toString();
+          
+          if (currentLength > maxLength) {
+            counter.classList.add('text-red-500');
+          } else {
+            counter.classList.remove('text-red-500');
+          }
+        };
+  
+        input.addEventListener('input', updateCount);
+        // Initialize the count
+        updateCount();
+      }
+    };
+  
+    const charCountConfigs: CharCountConfig[] = [
+      { inputId: 'title', counterId: 'titleCount', maxLength: 255 },
+      { inputId: 'slug', counterId: 'slugCount', maxLength: 100 },
+      { inputId: 'content', counterId: 'contentCount', maxLength: 10000 },
+      { inputId: 'excerpt', counterId: 'excerptCount', maxLength: 500 },
+    ];
+  
+    charCountConfigs.forEach(updateCharCount);
+  
+    // Markdown formatting
+    const contentTextarea = document.getElementById('content') as HTMLTextAreaElement;
+    const markdownButtons = document.querySelectorAll('.markdown-btn');
+  
+    const applyMarkdown = (textarea: HTMLTextAreaElement, markdownType: string) => {
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selectedText = textarea.value.substring(start, end);
+      let replacement = '';
+  
+      switch (markdownType) {
+        case 'bold':
+          replacement = `**${selectedText}**`;
+          break;
+        case 'italic':
+          replacement = `*${selectedText}*`;
+          break;
+        case 'h2':
+          replacement = `\n## ${selectedText}`;
+          break;
+        case 'h3':
+          replacement = `\n### ${selectedText}`;
+          break;
+        case 'ul':
+          replacement = `\n- ${selectedText}`;
+          break;
+        case 'ol':
+          replacement = `\n1. ${selectedText}`;
+          break;
+        case 'link':
+          replacement = `[${selectedText}](url)`;
+          break;
+      }
+  
+      textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
+      textarea.focus();
+      textarea.setSelectionRange(start + replacement.length, start + replacement.length);
+    };
+  
+    markdownButtons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        const markdownType = (e.target as HTMLElement).getAttribute('data-markdown');
+        if (markdownType) {
+          applyMarkdown(contentTextarea, markdownType);
+        }
+      });
+    });
+  </script>
 </Layout>

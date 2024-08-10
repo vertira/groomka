@@ -1,10 +1,10 @@
 ---
-import { Dog } from "lucide-react";
 import Header from "../../components/Header.astro";
 import Layout from "../../layout/Layout.astro";
 import { databases } from "../../lib/appwrite";
 import { Card } from "../../components/Card";
 import { Query } from "appwrite";
+import { Image } from 'astro:assets';
 const { documents: posts } = await databases.listDocuments(
   import.meta.env.PUBLIC_APPWRITE_DATABASE_ID,
   import.meta.env.PUBLIC_APPWRITE_COLLECTION_ID,
@@ -16,9 +16,9 @@ const { documents: posts } = await databases.listDocuments(
   <Header />
   <div class="flex-1">
     <h1
-      class="text-6xl font-bold mx-auto w-fit flex gap-4 items-center font-headings"
+      class="text-4xl lg:text-6xl font-bold mx-auto w-fit flex gap-4 items-center font-headings"
     >
-      <img src="/images/blog.webp" class="h-40" />Ostatnie posty
+      <Image src="/images/blog.webp" class="h-40" width={160} height={160}  alt="Last posts"/>Ostatnie posty
     </h1>
     <ul class="w-full">
       {
