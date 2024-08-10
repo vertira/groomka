@@ -1,35 +1,89 @@
 ---
-// Blok frontmatter (SSR) w Astro
-import { account } from "../../lib/appwrite";
+import Header from "../../components/Header.astro";
+import Layout from "../../layout/Layout.astro";
+import { checkSession } from "../../lib/sessionManager";
 
-const getUser = async () => {
-  try {
-    const user = await account.get();
-    return user;
-  } catch (error) {
-    console.log("Error");
-  }
-};
-
-const isAdmin = await getUser();
+let user = await checkSession();
 ---
+<Layout>
+    <Header />
+<div class="flex flex-1">
+    <div class="flex flex-col justify-center items-center grow">
+        <img src="images/Logo.webp"/>
+<h1 class="text-2xl">{user ? `Zalogowano: ${user.name}` : "Zaloguj się do Groomka"}</h1>
+{!user && (
+  <form id="login-form" class="flex flex-col gap-4 p-4 w-full lg:w-1/4">
+    <input type="email" id="email" name="email" placeholder="Email" required class="border border-black/30 p-2 rounded-xl" />
+    <input type="password" id="password" name="password" placeholder="Hasło" required class="border border-black/30 p-2 rounded-xl" />
+    <button type="submit" class="t border border-black/30 h-12 w-full rounded-xl">Zaloguj</button>
+  </form>
+)}
 
-<h1>{isAdmin ? `User: ${isAdmin.name}` : "User not logged in"}</h1>
-<button id="submit-btn" class="t border-2  h-12  w-96">SEND</button>
-
+{user && <button id="logout-btn" class="border h-12 w-full mt-4 rounded-xl">LOGOUT</button>}
+</div>
+</div>
 <script>
-  import { account } from "../../lib/appwrite";
+  import { account } from "../../lib/appwrite"; 
+  import { checkSession, logout } from "../../lib/sessionManager"; 
 
-  document.getElementById('submit-btn')!.addEventListener('click', async () => {
-    try {
-      const result = await account.createEmailPasswordSession('gromka2@groomka.pl', 'Groomka1234');
-      console.log(result);
-
-      // Po udanej sesji, możesz odświeżyć stronę lub zaktualizować stan użytkownika na stronie
-      const user = await account.get();
-      document.querySelector('h1')!.innerText = user ? `User: ${user.name}` : "User not logged in";
-    } catch (error) {
-      console.log("Error", error);
+  const updateUserStatus = async () => {
+    const user = await checkSession();
+    const h1 = document.querySelector('h1') as HTMLHeadingElement;
+    const logoutBtn = document.getElementById('logout-btn');
+    const loginForm = document.getElementById('login-form');
+    
+    if (user) {
+      h1.innerText = `Zalogowano: ${user.name}`;
+      loginForm?.remove();
+      if (!logoutBtn) {
+        const newLogoutBtn = document.createElement('button');
+        newLogoutBtn.id = 'logout-btn';
+        newLogoutBtn.className = 't border-2 h-12 w-96 mt-4';
+        newLogoutBtn.innerText = 'LOGOUT';
+        newLogoutBtn.addEventListener('click', handleLogout);
+        h1.insertAdjacentElement('afterend', newLogoutBtn);
+      }
+    } else {
+      h1.innerText = "Zaloguj się do Groomka";
+      logoutBtn?.remove();
+      if (!loginForm) {
+        const newLoginForm = document.createElement('form');
+        newLoginForm.id = 'login-form';
+        newLoginForm.className = 'flex flex-col gap-4 p-4 w-full lg:w-1/4';
+        newLoginForm.innerHTML = `
+        <input type="email" id="email" name="email" placeholder="Email" required class="border border-black/30 p-2 rounded-xl" />
+    <input type="password" id="password" name="password" placeholder="Hasło" required class="border border-black/30 p-2 rounded-xl" />
+    <button type="submit" class="t border border-black/30 h-12 w-full rounded-xl">Zaloguj</button>
+        `;
+        newLoginForm.addEventListener('submit', handleLogin);
+        h1.insertAdjacentElement('afterend', newLoginForm);
+      }
     }
-  });
-</script>
+  };
+
+  const handleLogin = async (event: Event) => {
+    event.preventDefault();
+    const emailInput = document.getElementById('email') as HTMLInputElement;
+    const passwordInput = document.getElementById('password') as HTMLInputElement;
+    
+    const email = emailInput.value;
+    const password = passwordInput.value
+    try {
+      await account.createEmailPasswordSession(email, password);
+      await updateUserStatus();
+    } catch (error) {
+      alert("Nieprawidłowe dane logowania!");
+    }
+  };
+
+  const handleLogout = async () => {
+    const success = await logout();
+    if (success) {
+      await updateUserStatus();
+    }
+  };
+
+  document.getElementById('login-form')?.addEventListener('submit', handleLogin);
+  document.getElementById('logout-btn')?.addEventListener('click', handleLogout);
+  window.addEventListener('load', updateUserStatus);
+</script></Layout>
