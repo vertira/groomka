@@ -4,7 +4,11 @@ import { client, databases, storage } from "../../lib/appwrite";
 import { marked } from "marked";
 import Layout from "../../layout/Layout.astro";
 import Header from "../../components/Header.astro";
-
+const { user } = Astro.locals;
+console.log(user);
+if (!user) {
+  return Astro.redirect("/admin");
+}
 async function uploadImage(file: any) {
   try {
     const response = await storage.createFile(
@@ -42,7 +46,6 @@ if (Astro.request.method === "POST") {
     excerpt: String(formData.get("excerpt")),
   };
 
-  console.log(data);
 
   const results = await databases.createDocument(
     import.meta.env.PUBLIC_APPWRITE_DATABASE_ID,
@@ -51,7 +54,6 @@ if (Astro.request.method === "POST") {
     data,
   );
 
-  console.log(results);
   return Astro.redirect(`/posts/${results.slug}`);
 }
 ---

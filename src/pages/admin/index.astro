@@ -31,7 +31,7 @@ let user = await checkSession();
     const h1 = document.querySelector('h1') as HTMLHeadingElement;
     const logoutBtn = document.getElementById('logout-btn');
     const loginForm = document.getElementById('login-form');
-    
+    console.log(user);
     if (user) {
       h1.innerText = `Zalogowano: ${user.name}`;
       loginForm?.remove();
